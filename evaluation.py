@@ -80,7 +80,7 @@ class EnvironmentWithEvaluationProxy:
         self.begin_time = datetime.datetime.now()
         self.n_checkpoints = 0
 
-        output_root = os.path.join(config['output_root'], experiment_id, agent_name, domain, f'run{run_index}')
+        output_root = os.path.join(config['output_root'])
         checkpoint_dir = os.path.join(output_root, 'checkpoints')
 
         os.makedirs(output_root, exist_ok=True)
@@ -274,7 +274,7 @@ def evaluate_policy_checkpoints(config, device):
         print('Checkpoint', i, 'does not exist -- stopping.')
 
 
-def normalize_solutions(solutions: list[list[str]]) -> list[list[str]]:
+def normalize_solutions(solutions: "list[list[str]]") -> "list[list[str]]":
     'Uses the Racket parser to syntactically normalize solutions in the equations domain.'
     all_steps = []
 

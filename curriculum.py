@@ -38,7 +38,7 @@ def build_curriculum(config, device):
     radius = config['radius']
 
     env = Environment.from_config(config)
-    q_fn = torch.load(config['q_function'], map_location=device)
+    q_fn = torch.load(config['agent']['q_function'], map_location=device)
     q_fn.to(device)
 
     print('Fetching problems...')

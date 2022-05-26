@@ -64,7 +64,7 @@ class LearningAgent:
 class ContrastiveExample:
     "Keeps track of one contrastive example (one positive vs N negative actions)"
     positive: Action
-    negatives: list[Action]
+    negatives: "list[Action]"
     gap: int  # How many steps into the future is this example for.
 
 

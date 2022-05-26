@@ -15,7 +15,7 @@ class QFunction(nn.Module):
 
     subtypes: dict = {}
 
-    def forward(self, state: list[State], actions: list[Action]):
+    def forward(self, state: "list[State]", actions: "list[Action]"):
         raise NotImplementedError()
 
     def aggregate(self, cumulative_score, next_q_score):
@@ -28,7 +28,7 @@ class QFunction(nn.Module):
                 state: State,
                 max_steps: int,
                 beam_size: int = 1,
-                debug: bool = False) -> tuple[bool, list[list[State]]]:
+                debug: bool = False) -> "tuple[bool, list[list[State]]]":
         """Runs beam search using the Q value until either
         max_steps have been made or reached a terminal state."""
         beam = [state]
@@ -72,7 +72,7 @@ class QFunction(nn.Module):
 
         return success, history
 
-    def recover_solutions(self, rollout_history: list[list[State]]) -> list[list[State]]:
+    def recover_solutions(self, rollout_history: "list[list[State]]") -> "list[list[State]]":
         '''Reconstructs the solutions (lists of states) from the history of a successful rollout.'''
 
         solution_states = [s for s in rollout_history[-1] if s.value > 0]
