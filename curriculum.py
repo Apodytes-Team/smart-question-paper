@@ -38,12 +38,12 @@ def build_curriculum(config, device):
     radius = config['radius']
 
     env = Environment.from_config(config)
-    q_fn = torch.load(config['agent']['q_function'], map_location=device)
+    q_fn = torch.load(config['agent']['q_function']['load_pretrained'], map_location=device)
     q_fn.to(device)
 
     print('Fetching problems...')
     problems = [env.generate_new(domain, seed=(i + config.get('seed', 0)))
-                for i in tqdm(range(config['n_problems']))]
+                for i in tqdm(range(config['eval_environment']['eval_config']['n_problems']))]
 
     print('Finding solutions...')
     problems_with_solution = find_all_solutions(env, problems, q_fn, config.get('max_steps', 30))
@@ -128,7 +128,8 @@ def build_curriculum(config, device):
     }
 
     with open(config['output'], 'wb') as f:
-        pickle.dump(data, f)
+        torch.save(data,f)
+        #pickle.dump(data, f)
 
     print('Saved', config['output'])
 
@@ -192,7 +193,8 @@ def sample_post_test(data, seed, n_problems):
             for p_id in candidates[:n_problems]]
 
 def serve_curriculum(config):
-    data = pickle.load(open(config['output'], 'rb'))
+    data = torch.load(open(config['output'], 'rb'))
+    # data = pickle.load(open(config['output'], 'rb'))
     problems = data['problems']
     solutions = data['solutions']
     size = config['curriculum_size']
