@@ -16,7 +16,7 @@ except ModuleNotFoundError:
 
 class State:
     'Represents a state, which is equivalent to a problem in our domains.'
-    def __init__(self, facts: list[str], goals: list[str], value: float, parent_action: 'Action' = None):
+    def __init__(self, facts: "list[str]", goals: "list[str]", value: float, parent_action: 'Action' = None):
         self.facts = tuple(facts)
         self.goals = tuple(goals)
         self.value = value
@@ -63,7 +63,7 @@ class Environment:
     def generate_new(self, domain: str, seed: int = None) -> State:
         raise NotImplementedError()
 
-    def step(self, states: list[State], domain: str = None) -> list[tuple[bool, list[Action]]]:
+    def step(self, states: "list[State]", domain: str = None) -> "list[tuple[bool, list[Action]]]":
         raise NotImplementedError()
 
     @staticmethod

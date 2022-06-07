@@ -269,7 +269,7 @@ def evaluate_policy_checkpoints(config, device):
         print('Checkpoint', i, 'does not exist -- stopping.')
 
 
-def normalize_solutions(solutions: list[list[str]]) -> list[list[str]]:
+def normalize_solutions(solutions: "list[list[str]]") -> "list[list[str]]":
     'Uses the Racket parser to syntactically normalize solutions in the equations domain.'
     all_steps = []
 
