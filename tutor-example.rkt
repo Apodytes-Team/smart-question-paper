@@ -1,4 +1,7 @@
 ; Example problem for the tutor.
+
+#!/usr/bin/racket
+#lang racket/base
 #lang racket
 
 (require "term-parser.rkt")
