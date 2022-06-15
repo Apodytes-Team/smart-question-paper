@@ -6,7 +6,7 @@
 (require "facts.rkt")
 (require "term-parser.rkt")
 (require "solver.rkt")
-(require "tactics.rkt")
+;(require "tactics.rkt")
 (require "questions.rkt")
 
 ; Creates a goal to solve for the given variable.
